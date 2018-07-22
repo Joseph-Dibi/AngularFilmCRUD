@@ -1,3 +1,75 @@
 <p>
   film-site works!
 </p>
+<div *ngIf="!selected">
+<h4>Actors</h4>
+<ul *ngFor="let actor of actors">
+  <li>{{actor.firstName}} {{actor.lastName}}
+    <button class="btn btn-danger" (click)= deleteActor(actor)>Delete</button>
+  </li>
+</ul>
+</div>
+<form action="" *ngIf="!selected">
+  <input type="text" name="task" placeholder="First Name" [(ngModel)]="newActor.firstName">
+  <input type="text" name="description" placeholder="Last Name" [(ngModel)]="newActor.lastName">
+  <br>
+  <input type="submit" name="submit" value="Add Actor" (click)= addActor()>
+</form>
+<table *ngIf="!selected" class="table-striped table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Actors</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let film of films">
+      <td (click)= displayFilm(film)>{{film.title}}</td>
+      <td>{{film.description}}</td>
+      <td>
+        <ul *ngFor="let actor of film.actors">
+          <li>{{actor.firstName}} {{actor.lastName}}</li>
+        </ul>
+        <hr>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<form action="" *ngIf="!selected">
+  <input type="text" name="task" placeholder="Title" [(ngModel)]="newFilm.title">
+  <input type="text" name="description" placeholder="Description" [(ngModel)]="newFilm.description">
+
+  <br>
+  <input type="submit" name="submit" value="Add Film" (click)= addFilm()>
+</form>
+<form action="" *ngIf="editFilm">
+    <ul *ngFor="let actor of editFilm.actors">
+        <li>{{actor.firstName}} {{actor.lastName}}</li>
+      </ul>
+  <input type="text" name="task" placeholder="Title" [(ngModel)]="editFilm.title">
+  <br>
+  <input type="text" name="description" placeholder="Description" [(ngModel)]="editFilm.description">
+  <br>
+  <ul *ngFor="let actor of actors">
+      <li>{{actor.firstName}} {{actor.lastName}}
+        <button class="btn btn-danger" (click) = addActorToFilm(actor)>Add to Film</button>
+      </li>
+    </ul>
+  <br>
+  <input type="submit" name="submit" value="Save" (click)="saveEditFilm()">
+  <input type="submit" name="submit" value="Cancel" (click)="cancelEditFilm()">
+</form>
+
+<div *ngIf="selected && !editFilm">
+  <h5>{{selected.id}}</h5>
+  <h3>{{selected.title}}</h3>
+  <h4>{{selected.description}}</h4>
+  <ul *ngFor="let actor of selected.actors">
+      <li>{{actor.firstName}} {{actor.lastName}}</li>
+    </ul>
+  <button class="btn btn-danger" (click)= displayTable()>Back</button>
+  <button class="btn btn-danger" (click)= setEditFilm()>Edit</button>
+  <button class="btn btn-danger" (click) = deleteFilm()>Delete</button>
+</div>

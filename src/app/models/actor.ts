@@ -1,10 +1,10 @@
 
 export class Actor {
+  id: number;
   firstName: string;
   lastName: string;
-  id: number;
 
-  constructor(firstName?: string, lastName?: string, id?: number) {
+  constructor(id?: number, firstName?: string, lastName?: string) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.id = id;
