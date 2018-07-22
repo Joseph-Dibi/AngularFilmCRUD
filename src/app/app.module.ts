@@ -3,10 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FilmComponent } from './model/film/film.component';
+import { ActorComponent } from './model/actor/actor.component';
+import { FilmSiteComponent } from './film-site/film-site.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FilmComponent,
+    ActorComponent,
+    FilmSiteComponent
   ],
   imports: [
     BrowserModule,
